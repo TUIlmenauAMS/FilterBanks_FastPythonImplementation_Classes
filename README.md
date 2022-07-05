@@ -1,0 +1,2 @@
+# FilterBanks_FastPythonImplementation_Classes
+Fast Filter Bank Implementations using Python and Classes.  These are programs and functions for the implementation of fast filter banks, Low Delay filter banks, and Modified Discrete Cosine Transform filter banks. They use a classes implementation, which makes them more easily suitable for multichannel signal processing. For each channel, an instance of the desired filter bank can be instantiated.
