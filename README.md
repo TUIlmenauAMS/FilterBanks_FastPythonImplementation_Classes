@@ -32,3 +32,6 @@ Outside of this thread, the audio processing can be controlled using "tkinter", 
 
 Connect headphones and microphones, and run it with: 
 ``python3 pyrecplaystereoMDCTcallback_tkinter.py``
+
+Many greetings,
+  Gerald Schuller
