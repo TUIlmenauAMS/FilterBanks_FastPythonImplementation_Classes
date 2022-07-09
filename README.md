@@ -4,9 +4,16 @@ These are programs and functions for the implementation of fast filter banks, Lo
 
 The advantages of the fast implementation are:
 
-fastest implementation without the need of specialized hardware
-low memory requirement for filtering and signal processing
-real time processing, one signal block goes in, one signal block comes out
+* fastest implementation without the need of specialized hardware
+* low memory requirement for filtering and signal processing
+* real time processing, one signal block goes in, one signal block comes out
+
+For the theoretical background see the book:
+
+Gerald Schuller: "Filter Banks and Audio Coding - Compressing Audio Signals Using Python",
+Springer 2020, 
+ISBN: 978-3-030-51249-1 (e-book)
+ISBN: 978-3-030-51251-4 (softcover or hardcover)
 
 The file "pyrecplayfastLDFB_classes.py" contains the filter bank functions and objects (classes).
 If run on its own, with 
