@@ -35,7 +35,6 @@ a = p.get_device_count()
 print("device count=",a)
 
 
-
 def quitbutton():
    #quits the program
    global PLAY
@@ -43,22 +42,53 @@ def quitbutton():
    return
 
 def processingbutton():
-   #quits the program
+   #Turns on and off processing
    global PROC
    PROC=not PROC
+      
+   T1.delete(1.0, Tk.END)
+   if PROC==True:
+      T1.insert(Tk.END, "HF Emph. on\n")
+   else:
+      T1.insert(Tk.END, "HF Emph. Off\n")
+   return
+   
+def HFbutton():
+   #turns on and off the high frequency down-shift
+   global HFSHIFT
+   HFSHIFT=not HFSHIFT
+      
+   T2.delete(1.0, Tk.END)
+   if HFSHIFT==True:
+      T2.insert(Tk.END, "HF Shift On\n")
+   else:
+      T2.insert(Tk.END, "HF Shift Off\n")
    return
 
 
 PLAY = True
 PROC = True
+HFSHIFT = True
+
 master = Tk.Tk()
+master.title("MDCT Stereo Processing Demo")
+#Tk.Label(text="Test", fg="black", bg="white")
+T1 = Tk.Text(master, height=3, width=30)
+T1.pack()
+T2 = Tk.Text(master, height=3, width=30)
+T2.pack()
+#T.insert(Tk.END, "Passthrough:'p'\nEnd: 'q'\n")
 #PROC=Tk.IntVar()
 vol = Tk.Scale(master, from_=20, to=-30, length=200, tickinterval=8, label='Volume dBFs')
 vol.set(-10) #start
 vol.pack()
 Tk.Button(master, text='Quit', command=quitbutton).pack()
-Tk.Button(master, text='Processing on/off', command=processingbutton).pack()
+Tk.Button(master, text='HF Emph. on/off', command=processingbutton).pack()
+Tk.Button(master, text='HF Shift on/off', command=HFbutton).pack()
 #Tk.Checkbutton(master, text="Processing", variable=PROC).pack()
+T1.insert(Tk.END, "HF Emphasis Processing On\n")
+T2.insert(Tk.END, "High Frequency Shift On\n")
+
 
 for i in range(0, a):
     print("i = ",i)
@@ -79,10 +109,11 @@ def callback(in_data, frame_count, time_info, flag):
     y0=MDCT0.forward(multichandata[:,0])
     y1=MDCT1.forward(multichandata[:,1])
     #print("y0.shape=", y0.shape)
-    if PROC: #processing active:
-       #Example, e.g. for hearing aids: Copy and add frequencies > 10 kHz below, 192 subbands, or 6KHz shift below:
+    if HFSHIFT: #HF shift active:
+       #Example, e.g. for hearing aids: Shift or Copy and add frequencies > 10 kHz below, 192 subbands, or 6KHz shift below:
        y0[128:320]+=y0[320:]
        y1[128:320]+=y1[320:]
+    if PROC: #processing active:
        #gain of 20 dB above 6 kHz:
        y0[192:]*=10
        y1[192:]*=10
