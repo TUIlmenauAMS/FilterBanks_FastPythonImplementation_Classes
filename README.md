@@ -35,7 +35,7 @@ Run it with: ``python3 pyrecplayfastMDCT_test.py``
 The final example, "pyrecplaystereoMDCTcallback_tkinter.py", demonstrates the multichannel live processing capability which is obtained 
 using objects and instances. It sets up 2 MDCT filter banks for the 2 channels of a stereo audio input from the local sound card, using pyaudio, uses live processing to generate the MDCT subbands with the MDCT analysis filter bank, with possible subband processing and modifications, reconstructs them using the MDCT synthesis filter bank and sends the processed audio streams to the sound card output. The processing is done in a separate thread using a callback function, for uninterrupted audio streaming. An example of the subband processing can be a binaural hearing aid application (except for the delay). This is shown in the example, where frequencies above 10 kHz are shifted below, and frequencies above 6 kHz are amplified by 20 dB.
 
-Outside of this thread, the audio processing can be controlled using "tkinter", which presents a volume control in dB using a slider, a "Quit" button, and a "Processing on/off" button.
+Outside of this thread, the audio processing can be controlled using "tkinter", which presents a volume control in dB using a slider, a "Quit" button,  "HF Emph. on/off" and "HF Shift on/off" buttons.
 
 Connect headphones and microphones, and run it with: 
 ``python3 pyrecplaystereoMDCTcallback_tkinter.py``
